@@ -25,6 +25,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'faker'
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails'
