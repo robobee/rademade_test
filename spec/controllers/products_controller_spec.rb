@@ -27,12 +27,12 @@ RSpec.describe Api::ProductsController, type: :controller do
     end
 
     it "returns http success" do
-      get :show, alias_name: @product
+      get :show, alias_name: @product.alias_name
       expect(response).to have_http_status(:success)
     end
 
     it "returns json representation of a product" do
-      get :show, alias_name: @product
+      get :show, alias_name: @product.alias_name
       pr = JSON.parse(response.body, symbolize_names: true)[:product]
       expect(pr[:name]).to eq(@product.name)
       expect(pr[:description]).to eq(@product.description)

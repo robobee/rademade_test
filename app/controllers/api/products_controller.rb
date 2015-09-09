@@ -8,7 +8,7 @@ module Api
     end
 
     def show
-      if @product = Product.find_by(params[:alias_name])
+      if @product = Product.find_by(alias_name: params[:alias_name])
         render json: @product
       else
         render json: {}, status: 404

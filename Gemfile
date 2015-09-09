@@ -9,6 +9,7 @@ gem 'puma'
 
 gem 'active_model_serializers'
 gem 'bower-rails'
+gem 'slim'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
