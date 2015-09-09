@@ -1,0 +1,8 @@
+{
+  "name": "App",
+  "dependencies": {
+    "angular": "latest",
+    "angular-sanitize": "latest",
+    "angular-ui-router": "latest"
+  }
+}
