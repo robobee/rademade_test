@@ -4,7 +4,6 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.1'
 
-gem 'sqlite3'
 gem 'puma'
 
 gem 'active_model_serializers'
@@ -29,6 +28,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'database_cleaner'
   gem 'faker'
   gem 'spring-commands-rspec'
@@ -36,4 +36,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'spring'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
