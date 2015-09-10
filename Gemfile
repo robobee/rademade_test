@@ -11,6 +11,7 @@ gem 'slim'
 gem 'will_paginate', '~> 3.0.6'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'ngannotate-rails'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
