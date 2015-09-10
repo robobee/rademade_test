@@ -5,11 +5,12 @@ ruby '2.2.2'
 gem 'rails', '4.2.1'
 
 gem 'puma'
-
 gem 'active_model_serializers'
 gem 'bower-rails'
 gem 'slim'
 gem 'will_paginate', '~> 3.0.6'
+gem 'factory_girl_rails'
+gem 'faker'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
@@ -30,9 +31,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'database_cleaner'
-  gem 'faker'
   gem 'spring-commands-rspec'
-  gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'spring'
