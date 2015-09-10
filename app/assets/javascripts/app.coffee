@@ -15,15 +15,25 @@ window.app = angular.module('app', [
       templateUrl: 'layouts/index.html',
       controller: 'LayoutCtrl'
 
-    .state 'public.catalog',
+    .state 'public.productCatalog',
       url: '/',
-      templateUrl: 'views/catalog.html',
-      controller: 'CatalogCtrl'
+      templateUrl: 'views/product-catalog.html',
+      controller: 'ProductCatalogCtrl',
+      resolve: {
+        productResource: "Product",
+        products: (productResource) ->
+          productResource.get()
+      }
 
-    .state 'productDetail',
-      url: '/:alias_name',
+    .state 'public.productDetail',
+      url: '/:aliasName',
       templateUrl: 'views/product-detail.html',
-      controller: 'ProductDetailCtrl'
+      controller: 'ProductDetailCtrl',
+      resolve: {
+        productResource: "Product",
+        product: (productResource, $stateParams) ->
+          productResource.get($stateParams.aliasName)
+      }
 
     $urlRouterProvider.otherwise '/'
 

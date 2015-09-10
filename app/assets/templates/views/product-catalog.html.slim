@@ -1,0 +1,10 @@
+h1.page-header Product catalog
+.row
+  .col-sm-6.col-md-4 ng-repeat="product in products"
+    .thumbnail
+      img src="http://lorempixel.com/400/200/" alt="thumbnail"
+      .caption
+        h3 {{product.name}}
+        p {{product.description}}
+        p {{product.price | currency}}
+        a.btn.btn-primary ui-sref="public.productDetail({ aliasName: product.aliasName })"Details

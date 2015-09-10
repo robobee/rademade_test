@@ -14,6 +14,8 @@ gem 'slim'
 # Assets
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails', '2.0.2'
+gem "therubyracer"
+gem "less-rails"
 
 # Scripts
 gem 'coffee-rails', '~> 4.0.0'
