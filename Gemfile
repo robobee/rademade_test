@@ -10,6 +10,7 @@ gem 'puma'
 gem 'active_model_serializers'
 gem 'bower-rails'
 gem 'slim'
+gem 'will_paginate', '~> 3.0.6'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
