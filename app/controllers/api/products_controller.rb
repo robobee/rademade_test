@@ -3,8 +3,10 @@ module Api
   class ProductsController < ApplicationController
 
     def index
-      @products = Product.paginate(:page => safe_page_param, :per_page => 3)
-      render json: @products, meta: { total_products: Product.count }
+      per_page = safe_per_page
+      @products = Product.paginate(:page => safe_page, :per_page => per_page)
+      render json: @products, meta: { total_products: Product.count,
+                                      products_per_page: per_page }
     end
 
     def show
@@ -17,18 +19,33 @@ module Api
 
     private
 
-      def safe_page_param
-        if params.has_key?(:page) && page_is_valid(params[:page])
+      def safe_page
+        if params.has_key?(:page) && is_valid_integer(params[:page])
           params[:page]
         else
-          1
+          page_default
         end
       end
 
-      def page_is_valid(page)
-        page.match(/\A\d+\Z/) && page.to_i > 0
+      def safe_per_page
+        if params.has_key?(:per_page) && is_valid_integer(params[:per_page])
+          params[:per_page]
+        else
+          per_page_default
+        end
       end
 
+      def is_valid_integer(param)
+        param.match(/\A\d+\Z/) && param.to_i > 0
+      end
+
+      def per_page_default
+        3
+      end
+
+      def page_default
+        1
+      end
   end
 
 end

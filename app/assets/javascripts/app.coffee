@@ -19,13 +19,12 @@ window.app = angular.module('app', [
     .state 'public.productCatalog',
       url: '/',
       templateUrl: 'views/product-catalog.html',
-      controller: 'ProductCatalogCtrl'
-      # ,
-      # resolve: {
-      #   productResource: "Product",
-      #   products: (productResource) ->
-      #     productResource.get()
-      # }
+      controller: 'ProductCatalogCtrl',
+      resolve: {
+        productResource: "Product",
+        products: (productResource) ->
+          productResource.get()
+      }
 
     .state 'public.productDetail',
       url: '/:aliasName',

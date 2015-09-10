@@ -1,6 +1,6 @@
 h1.page-header Product catalog
 .row
-  .col-sm-6.col-md-4 dir-paginate="product in products | itemsPerPage: productsPerPage" total-items="totalProducts" current-page="currentPage"
+  .col-xs-6.col-md-4 dir-paginate="product in products | itemsPerPage: productsPerPage" total-items="totalProducts" current-page="currentPage"
     .thumbnail
       img src="http://lorempixel.com/400/200/" alt="thumbnail"
       .caption
@@ -10,4 +10,12 @@ h1.page-header Product catalog
         a.btn.btn-primary ui-sref="public.productDetail({ aliasName: product.aliasName })"Details
 .row
   .col-sm-12
-    <dir-pagination-controls>
+    <dir-pagination-controls></dir-pagination-controls>
+    p
+      strong> Show:
+      a<> ng-class="{'active': productsPerPage == 3}" ng-click="setProductsPerPage(3)" 3 products
+      ||
+      a<> ng-class="{'active': productsPerPage == 6}" ng-click="setProductsPerPage(6)" 6 products
+      ||
+      a<> ng-class="{'active': productsPerPage == 9}" ng-click="setProductsPerPage(9)" 9 products
+      | per page
