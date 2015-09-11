@@ -37,16 +37,16 @@ RSpec.describe Api::ProductsController, type: :controller do
       @p_5 = create(:product)
     end
 
-    context "without page attribute" do
+    context "without page and per_page attributes" do
       it "returns first 3 products" do
-        get :index, page: 1
+        get :index
         resp = JSON.parse(response.body, symbolize_names: true)
         product_names = resp[:products].map { |pr| pr[:name] }
         expect(product_names).to match_array([@p_1.name, @p_2.name, @p_3.name])
       end
     end
 
-    context "with valid page attribute" do
+    context "with valid page and default per_page" do
       it "returns first 3 products" do
         get :index, page: 1
         resp = JSON.parse(response.body, symbolize_names: true)
@@ -62,12 +62,39 @@ RSpec.describe Api::ProductsController, type: :controller do
       end
     end
 
+    context "with valid page and per_page attributes" do
+
+      it "returns 2nd page of 2 products" do
+        get :index, page: 2, per_page: 2
+        resp = JSON.parse(response.body, symbolize_names: true)
+        product_names = resp[:products].map { |pr| pr[:name] }
+        expect(product_names).to match_array([@p_3.name, @p_4.name])
+      end
+
+      it "returns 3nd page of 1 remaining product" do
+        get :index, page: 3, per_page: 2
+        resp = JSON.parse(response.body, symbolize_names: true)
+        product_names = resp[:products].map { |pr| pr[:name] }
+        expect(product_names).to match_array([@p_5.name])
+      end
+
+    end
+
     context "with invalid page attribute" do
       it "does not break" do
         get :index, page: 'hello world!'
         resp = JSON.parse(response.body, symbolize_names: true)
         product_names = resp[:products].map { |pr| pr[:name] }
-        expect(product_names).to match_array([@p_1.name, @p_2.name, @p_3.name]  )
+        expect(product_names).to match_array([@p_1.name, @p_2.name, @p_3.name])
+      end
+    end
+
+    context "with invalid per_page attribute" do
+      it "does not break" do
+        get :index, per_page: 'hello world!'
+        resp = JSON.parse(response.body, symbolize_names: true)
+        product_names = resp[:products].map { |pr| pr[:name] }
+        expect(product_names).to match_array([@p_1.name, @p_2.name, @p_3.name])
       end
     end
   end
