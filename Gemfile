@@ -29,6 +29,11 @@ group :development do
   gem 'pry-byebug'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'database_cleaner'
